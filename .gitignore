@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.streamlit/secrets.toml
+.git/
+app_backup.py
+check_gpu.py
+cloudanalyst_baseline_results.pdf

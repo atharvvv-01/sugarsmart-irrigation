@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sugarsmart-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sugarsmart
+  template:
+    metadata:
+      labels:
+        app: sugarsmart
+    spec:
+      containers:
+        - name: sugarsmart
+          image: atharvbadhe01/sugarsmart-irrigation:v1
+          ports:
+            - containerPort: 8501
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 10
+            periodSeconds: 10
